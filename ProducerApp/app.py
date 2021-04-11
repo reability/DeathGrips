@@ -8,6 +8,7 @@ from datetime import datetime as dt
 # MARK: - Constants
 
 URL = "https://www.avito.ru/moskva?q=ps4"
+GATEWAY = "http://143.198.77.145:8000"
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0'
     }
@@ -23,7 +24,8 @@ async def job():
     while True:
         print("new job")
         r = await request_task()
-        print(r)
+        r2 = requests.post(GATEWAY, json=r)
+        print(r, r2)
 
 async def request_task():
     url = URL
