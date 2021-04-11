@@ -4,7 +4,7 @@ import asyncio
 async def main():
     session = aiohttp.ClientSession()
     print("StaRTED")
-    async with session.ws_connect('http:/143.198.77.145:8000/ws') as ws:
+    async with session.ws_connect('http:/134.209.248.84:8000/ws') as ws:
         print("Started")
         async for msg in ws:
             print(ws)

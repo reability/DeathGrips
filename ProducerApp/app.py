@@ -24,8 +24,12 @@ async def job():
     while True:
         print("new job")
         r = await request_task()
-        r2 = requests.post(GATEWAY, json=r)
-        print(r, r2)
+        await asyncio.sleep(3)
+        try:
+           r2 = requests.post(GATEWAY, json=r)
+        except Exception:
+            print("")
+        print(r)
 
 async def request_task():
     url = URL
