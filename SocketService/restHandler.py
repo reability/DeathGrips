@@ -11,8 +11,8 @@ class ItemController(web.View):
             result.append({
                 "id": i["id"],
                 "title": i["title"],
-                "date": i["date"],
-                "url": i["url"]
+                "date": i["date_str"],
+                "url": i["url_path"]
             })
 
         for _ws in self.request.app['websockets']:
