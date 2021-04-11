@@ -90,14 +90,14 @@ async def parse(text: str):
         }
         items.append(filtered)
 
-    return items
+    return {"items": items}
 
 async def make_request(url):
     print(current_time() + " request")
     session_resp = requests.Session()
     result = session_resp.get(url, headers=HEADERS)
     if result is None:
-        result = session_resp.get(url, headers=headers, cookies=result.cookies)
+        result = session_resp.get(url, headers=HEADERS, cookies=result.cookies)
     print(result.cookies)
     #a = 1/0
     return result

@@ -3,13 +3,20 @@ from aiohttp import web
 class ItemController(web.View):
     async def post(self):
         body =  await self.request.post()
+        print(body)
+
+        result = []
+        for i in body["items"]:
+            result.append({
+                "id": i["id"],
+                "title": i["title"],
+                "date": i["date"],
+                "url": i["url"]
+            })
 
         for _ws in self.request.app['websockets']:
             await _ws.send_json({
-                "id": body["id"],
-                "title": body["title"],
-                "date": body["date"],
-                "url": body["url"]
+                "items": result
             })
 
         return web.Response()
