@@ -24,7 +24,7 @@ async def job():
     while True:
         print("new job")
         r = await request_task()
-        await asyncio.sleep(3)
+        #await asyncio.sleep(3)
         try:
            r2 = requests.post(GATEWAY, json=r)
         except Exception:
@@ -92,6 +92,8 @@ async def make_request(url):
     print(current_time() + " request")
     session_resp = requests.Session()
     result = session_resp.get(url, headers=HEADERS)
+    if result is None:
+        result = session_resp.get(url, headers=headers, cookies=result.cookies)
 
     return result
 
@@ -104,6 +106,7 @@ def current_time():
 if __name__ == "__main__":
     print("Application has started")
     loop = asyncio.new_event_loop()
+    #loop = asyncio.current_task()
     asyncio.set_event_loop(loop)
     try:
         loop.run_until_complete(main())
