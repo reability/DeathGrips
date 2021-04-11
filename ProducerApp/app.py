@@ -8,7 +8,7 @@ from datetime import datetime as dt
 # MARK: - Constants
 
 URL = "https://www.avito.ru/moskva?q=ps4"
-GATEWAY = "http://143.198.77.145:8000"
+GATEWAY = "http://134.209.248.84:8000"
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0'
     }
@@ -94,7 +94,8 @@ async def make_request(url):
     result = session_resp.get(url, headers=HEADERS)
     if result is None:
         result = session_resp.get(url, headers=headers, cookies=result.cookies)
-
+    print(result.cookies)
+    #a = 1/0
     return result
 
 # MARK: - Utilities
