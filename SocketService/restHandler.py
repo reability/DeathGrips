@@ -2,7 +2,7 @@ from aiohttp import web
 
 class ItemController(web.View):
     async def post(self):
-        body =  await self.request.post()
+        body =  await self.request.json()
         print(body)
 
         result = []
