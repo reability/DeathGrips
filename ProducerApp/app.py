@@ -8,7 +8,7 @@ from datetime import datetime as dt
 # MARK: - Constants
 
 URL = "https://www.avito.ru/moskva?q=ps4"
-GATEWAY = "http://134.209.248.84:8000"
+GATEWAY = "http://134.209.248.84:8000/item"
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0'
     }
@@ -25,10 +25,14 @@ async def job():
         print("new job")
         r = await request_task()
         #await asyncio.sleep(3)
-        try:
-           r2 = requests.post(GATEWAY, json=r)
-        except Exception:
-            print("")
+        r2 = requests.post(GATEWAY, json=r)
+        if r2.status_code == requests.codes.ok :
+            print(1/0)
+        else:
+            print(r2.text) 
+            1/0
+        print("")
+
         print(r)
 
 async def request_task():
