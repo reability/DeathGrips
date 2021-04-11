@@ -25,6 +25,7 @@ async def job():
         print("new job")
         r = await request_task()
         #await asyncio.sleep(3)
+        print(r)
         r2 = requests.post(GATEWAY, json=r)
         if r2.status_code == requests.codes.ok :
             print(1/0)

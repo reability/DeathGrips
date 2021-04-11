@@ -6,7 +6,8 @@ class ItemController(web.View):
         print(body)
 
         result = []
-        for i in body["items"]:
+        for i in body.get("items"):
+            print(i)
             result.append({
                 "id": i["id"],
                 "title": i["title"],
